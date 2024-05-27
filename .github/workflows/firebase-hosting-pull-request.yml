@@ -12,10 +12,12 @@ jobs:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
       - uses: actions/checkout@v4
-      - run: pnpm run build
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: true
+      - name: Build
+        run: pnpm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

@@ -13,7 +13,7 @@ let turn = ref(1);
 let xScore = ref(0);
 let yScore = ref(0);
 
-function move(x, y) {
+function move(x: number, y: number) {
   if (grid.value[x][y] !== 0) {
     return;
   }
@@ -99,7 +99,7 @@ function reset() {
         <td
           v-for="y in 3"
           :id="`${x - 1}.${y - 1}`"
-          @click="move(`${x - 1}`, `${y - 1}`)"
+          @click="move(parseInt(`${x - 1}`), parseInt(`${y - 1}`))"
         >
           <X v-if="grid[x - 1][y - 1] === 1" class="x" />
           <O v-if="grid[x - 1][y - 1] === 2" class="o" />
